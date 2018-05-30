@@ -44,6 +44,7 @@
   <script>
     const details = document.getElementById("details");
     
+    // Feature detection
     if (window.AmbientLightSensor){
         try{
           const sensor = new AmbientLightSensor();
@@ -52,6 +53,8 @@
           sensor.onreading = () => {
             details.innerHTML = sensor.illuminance;
             
+              // Read the light levels in lux 
+              // < 50 is dark room
               if (sensor.illuminance < 50) {
                 document.body.className = 'darkLight';
               } else {
