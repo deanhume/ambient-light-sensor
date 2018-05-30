@@ -8,17 +8,14 @@
   
   </body>
   <script>
-//     const sensor = new AmbientLightSensor();
-//     sensor.onreading = () => console.log(sensor.illuminance);
-//     sensor.onerror = event => console.log(event.error.name, event.error.message);
-//     sensor.start();
-
   if ('ondevicelight' in window) {
 
     console.log('On Device Light Value', event.value);
 
   window.addEventListener('devicelight', function(event) {
-    // var body = document.querySelector('body');
+    var body = document.querySelector('body');
+    body.innerHTML += event.value;
+
     // if (event.value < 50) {
     //   body.classList.add('darklight');
     //   body.classList.remove('brightlight');
@@ -33,5 +30,10 @@
 } else {
   console.log('devicelight event not supported');
 }
+    
+    const sensor = new AmbientLightSensor();
+    sensor.onreading = () => console.log(sensor.illuminance);
+    sensor.onerror = event => console.log(event.error.name, event.error.message);
+    sensor.start();
   </script>
 </html>
