@@ -13,6 +13,10 @@
         font-size: 40px; 
       }
       
+      #id{
+        font-size: 40px; 
+      }
+      
       .darkLight{
           font-family: 'Catamaran', sans-serif;
           letter-spacing: -4px;
@@ -37,23 +41,23 @@
     <div id="details"></div>  
   </body>
   <script>
-
+    const details = document.getElementById("details");
+    
     if (window.AmbientLightSensor){
         try{
           const sensor = new AmbientLightSensor();
-          const details = document.getElementById("details");
-          const body = document.getElementById("body");
+          const bodyStyling = document.getElementById("body");
 
           // Detect changes in the light
           sensor.onreading = () => {
             details.innerHTML = sensor.illuminance;
             
               if (sensor.illuminance < 50) {
-                body.classList.add('darklight');
-                body.classList.remove('brightlight');
+                details.innerHTML += 'dark';
+                bodyStyling.className = 'darkLight';
               } else {
-                body.classList.add('brightlight');
-                body.classList.remove('darklight');
+                 details.innerHTML += 'light';
+                bodyStyling.className = 'brightLight';
               }
           }
           
@@ -61,8 +65,10 @@
           sensor.onerror = event => document.getElementById("details").innerHTML = event.error.message;
           sensor.start();
         } catch(err) {
-          document.getElementById("details").innerHTML += err.message;
+          details.innerHTML = err.message;
         }
+    } else {
+      details.innerHTML = 'It looks like your browser doesnt support this feature'; 
     }
 
   </script>
