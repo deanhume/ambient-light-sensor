@@ -47,18 +47,15 @@
     if (window.AmbientLightSensor){
         try{
           const sensor = new AmbientLightSensor();
-          const bodyStyling = document.getElementById("body");
 
           // Detect changes in the light
           sensor.onreading = () => {
             details.innerHTML = sensor.illuminance;
             
               if (sensor.illuminance < 50) {
-                details.innerHTML += 'dark';
-                bodyStyling.className = 'darkLight';
+                document.body.className = 'darkLight';
               } else {
-                 details.innerHTML += 'light';
-                bodyStyling.className = 'brightLight';
+                document.body.className = 'brightLight';
               }
           }
           
