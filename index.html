@@ -3,13 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <title>Ambient Light Sensor</title>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:700" rel="stylesheet">
     <style>
     .darkLight{
+        font-family: 'Catamaran', sans-serif;
         color: #8cabd9;
         background-color: #0a244d;
       }
       
      .brightLight{
+        font-family: 'Catamaran', sans-serif;
         background-color: #eef4f7;
         color: #0a244d;
       }
@@ -30,7 +33,7 @@
 
           // Detect changes in the light
           sensor.onreading = () => {
-            details.innerHTML += sensor.illuminance;
+            details.innerHTML = sensor.illuminance;
             
               if (sensor.illuminance < 50) {
                 body.classList.add('darklight');
